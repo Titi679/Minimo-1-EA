@@ -1,0 +1,43 @@
+<p>follower works!</p>
+
+<button (click)="showAddFollowerForm()">Agregar Follower</button>
+
+<div >
+    @if(showForm){
+  <h3>Agregar Nuevo Follower</h3>
+  <form (ngSubmit)="addFollower()">
+    <label for="firstName">Nombre:</label>
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="newFollower.first_name" required>
+
+    <label for="firstName">1r Apellido:</label>
+    <input type="text" id="middleName" name="middleName" [(ngModel)]="newFollower.middle_name" required>
+
+    <label for="lastName">2o Apellido:</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="newFollower.last_name" required>
+
+    <label for="followDate">Fecha de Seguimiento:</label>
+    <input type="date" id="followDate" name="followDate" [(ngModel)]="newFollower.follow_date" required>
+
+    <button type="submit">Agregar</button>
+  </form>
+}
+</div>
+
+<h2>Lista de Followers</h2>
+<div>
+    @if(followers.length > 0){
+  <ul>
+    @for(follower of followers; track follower._id){
+    <li>
+      <span>{{ follower.first_name }} {{ follower.last_name }}</span>
+      <button (click)="deleteFollower(follower._id ?? '')">Eliminar</button>
+    </li>
+    }
+  </ul>
+    }
+    @else if (followers.length<=0)
+    {
+        <p>No hay seguidores.</p>
+    }
+</div>
+

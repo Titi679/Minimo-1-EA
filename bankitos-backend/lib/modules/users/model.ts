@@ -28,4 +28,5 @@ export interface IUser {
     user_deactivated:boolean;
     creation_date: Date;
     modified_date: Date;
+    followers?: mongoose.Types.ObjectId[]; // Array to store followers IDs
 }

@@ -128,4 +128,20 @@ export default class UserService {
         }
     }
 
+    public async addFollowerToUser(userId: Types.ObjectId, followerId: Types.ObjectId): Promise<void> {
+        try {
+            // Retrieve the user document by ID
+            const user = await users.findById(userId);
+            if (!user) {
+                throw new Error('User not found');
+            }
+            // Add the post ID to the user's array of posts
+            user.followers.push(followerId);
+            // Save the updated user document
+            await user.save();
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }

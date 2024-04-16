@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private token: string | null = null;
+  currentUser: any;
 
   constructor() {}
 
@@ -28,5 +29,10 @@ export class AuthService {
     // Clear token from localStorage
     localStorage.removeItem('token');
     this.token = null;
+  }
+
+  getCurrentUserId(): string {
+    // Aquí podrías obtener la ID del usuario autenticado desde currentUser
+    return this.currentUser ? this.currentUser._id : '';
   }
 }
